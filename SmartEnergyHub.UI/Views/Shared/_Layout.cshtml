@@ -6,5 +6,7 @@
     <title>@ViewData["Title"] - SmartEnergyHub.UI</title>
 </head>
 <body>
+    @User.Identity.IsAuthenticated
+    @RenderBody()
 </body>
 </html>

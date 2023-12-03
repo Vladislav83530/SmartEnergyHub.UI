@@ -1,0 +1,41 @@
+﻿@using SmartEnergyHub.UI.Models.AuthCustomer
+
+@model CustomerRegisterModel
+
+<div>
+    <form method="post" asp-controller="AuthCustomer" asp-action="Register">
+        <div>
+            <label>First name</label>
+            <input asp-for="FirstName" required />
+            <span class="valid" asp-validation-for="FirstName"></span>
+        </div>
+        <div>
+            <label>Last name</label>
+            <input asp-for="LastName" required />
+            <span class="valid" asp-validation-for="LastName"></span>
+        </div>
+        <div>
+            <label>Email</label>
+            <input asp-for="Email" required />
+            <span class="valid" asp-validation-for="Email"></span>
+        </div>
+        <div>
+            <label>Phone number</label>
+            <input asp-for="PhoneNumber" required />
+            <span class="valid" asp-validation-for="PhoneNumber"></span>
+        </div>
+        <div>
+            <label>Password</label>
+            <input asp-for="Password" required />
+            <span class="valid" asp-validation-for="Password"></span>
+        </div>
+        <div>
+            <label>Confirm password</label>
+            <input asp-for="PasswordConfirm" required />
+            <span class="valid" asp-validation-for="PasswordConfirm"></span>
+        </div>
+        <div>
+            <input type="submit" class="btn" value="Sign up" />
+        </div>
+    </form>
+</div>
