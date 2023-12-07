@@ -24,12 +24,17 @@ namespace SmartEnergyHub.API.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Register(CustomerRegisterModel model)
         {
             if (ModelState.IsValid)
-            {
-
+            {             
                 Customer customer = new Customer
                 {
                     FistName = model.FirstName,
@@ -48,6 +53,7 @@ namespace SmartEnergyHub.API.Controllers
                     {
                         ModelState.AddModelError(string.Empty, error.Description);
                     }
+                    return View(model);
                 }
 
                 await _signInManager.SignInAsync(customer, false);
@@ -57,7 +63,7 @@ namespace SmartEnergyHub.API.Controllers
             return View(model);
         }
 
-        [HttpPost("login")]
+        [HttpPost]
         public async Task<IActionResult> Login(CustomerLoginModel model)
         {
             if (ModelState.IsValid)
@@ -67,13 +73,14 @@ namespace SmartEnergyHub.API.Controllers
                 if (!result.Succeeded)
                 {
                     ModelState.AddModelError("Login error", "Incorrect login or password");
+                    return View(model);
                 }
             }
 
-            return View(model);
+            return RedirectToAction("Index", "Home");
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
