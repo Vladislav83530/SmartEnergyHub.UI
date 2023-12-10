@@ -53,6 +53,7 @@ namespace SmartEnergyHub.API.Controllers
                     {
                         ModelState.AddModelError(string.Empty, error.Description);
                     }
+
                     return View(model);
                 }
 

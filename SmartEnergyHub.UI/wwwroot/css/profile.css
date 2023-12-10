@@ -1,0 +1,65 @@
+﻿.container-profile {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.profile-img {
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #7ed321;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.field-name-block {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.value-block {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.field-name-block h4 {
+    color: #7ed321;
+}
+
+.value-block-line {
+    margin-top: 54px;
+}
+
+.right-block {
+    text-align: center;
+}
+
+.btn-block {
+    margin-top: 25px;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.tooltip {
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.btn:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}

@@ -1,0 +1,68 @@
+﻿@using SmartEnergyHub.UI.Models.Customer
+
+@model CustomerModel
+
+@section Scripts {
+    <script type="text/javascript" src="" asp-append-version="true"></script>
+}
+
+@section Styles {
+    <link href="/css/profile.css" rel="stylesheet" asp-append-version="true" />
+}
+
+<div class="container-profile container w-50">
+    <div class="row">
+        <div class="col-8">
+            <h2>@Model.FirstName @Model.LastName</h2>
+            <div class="row">
+                <div class="col-6 field-name-block">
+                    <p>Email:</p>
+                    <p>Phone number:</p>
+                    <h4>Location</h4>
+                    <hr />
+                    <p>Region:</p>
+                    <p>City:</p>
+                    <p>Street:</p>
+                    <p>House number:</p>
+                    @if (string.IsNullOrEmpty(Model.FlatNumber)) {
+                        <p>Flat number:</p>
+                    }
+                </div>
+                <div class="col-6 value-block">
+                    <p>@Model.Email</p>
+                    <p>@Model.PhoneNumber</p>
+                    <hr class="value-block-line" />
+                    <p>@Model.Region</p>
+                    <p>@Model.City</p>
+                    <p>@Model.Street</p>
+                    <p>@Model.HouseNumber</p>
+                    @if (string.IsNullOrEmpty(Model.FlatNumber))
+                    {
+                        <p>@Model.FlatNumber</p>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-4 right-block">
+            <div class="row img-block">
+                <div class="col-7">
+                <img class="profile-img" src="~/images/profile_photo.jpg" width="160" height="160" />
+                </div>
+                <div class="col-4 btn-block">
+                    <div class="row mb-2">
+                        <a class="btn w-100">
+                            <img src="~/images/updated.png" width="40" height="40" />
+                            <span class="tooltip">Update info</span>
+                        </a>
+                    </div>
+                    <div class="row">
+                        <a class="btn w-100">
+                            <img src="~/images/delete.png" width="40" height="40" />
+                            <span class="tooltip">Delete account</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
