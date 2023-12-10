@@ -310,7 +310,15 @@ namespace SmartEnergyHub.UI.Providers.NetworkProvider
 
             using (HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Post, Combine(settings.BaseUrl, settings.AuthificationPath))
                 {
-                Headers = { { "username", settings.Login }, { "password", settings.Password } }
+                    Content = new StringContent(
+                        JsonConvert.SerializeObject(new
+                        {
+                            username = settings.Login,
+                            password = settings.Password
+                        }),
+                            Encoding.UTF8,
+                            "application/json"
+                        )
                 })
             {
                 using (CancellationTokenSource cancellationTokenSource = new CancellationTokenSource()) 

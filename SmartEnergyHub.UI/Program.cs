@@ -2,12 +2,18 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SmartEnergyHub.DAL.EF;
 using SmartEnergyHub.DAL.Entities;
+using SmartEnergyHub.UI.Providers.NetworkProvider;
+using SmartEnergyHub.UI.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.Configure<ApiSettings>
+        (builder.Configuration.GetSection("ApiSettings"));
+
+builder.Services.AddScoped<INetworkProvider, NetworkProvider>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -42,6 +48,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/");
 
 app.Run();
