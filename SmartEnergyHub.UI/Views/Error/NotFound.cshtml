@@ -1,0 +1,38 @@
+﻿<div class="container-error">
+    <img src="https://placekitten.com/600/400" alt="Cat Image">
+    <h1>404 Not Found</h1>
+    <p>Sorry, the page you are looking for might be in another galaxy.</p>
+    <p>Go back to <a asp-action="Home" asp-controller="Index"></a>.</p>
+</div>
+
+<style>
+    .container-error {
+        margin-top: 25px;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 4em;
+        margin-bottom: 10px;
+        color: #d9534f;
+    }
+
+    p {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+
+    a {
+        color: #5bc0de;
+        text-decoration: none;
+    }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+</style>

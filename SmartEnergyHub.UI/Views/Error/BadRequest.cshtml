@@ -1,0 +1,41 @@
+﻿<body>
+    <div class="container-error">
+        <img src="https://placekitten.com/600/400" alt="Cat Image">
+        <h1>500 Internal Server Error</h1>
+        <p>Oops! Something went wrong on our end. We're working to fix it.</p>
+        <p>Meanwhile, you can go back to <a asp-action="Home" asp-controller="Index">home</a>.</p>
+    </div>
+</body>
+
+<style>
+    .container-error {
+        margin-top: 25px;
+        text-align: center;
+    }
+
+    .container-error h1 {
+        font-size: 4em;
+        margin-bottom: 10px;
+        color: #d9534f;
+    }
+
+    .container-error p {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+
+    .container-error a {
+        color: #5bc0de;
+        text-decoration: none;
+    }
+
+        .container-error a:hover {
+            text-decoration: underline;
+        }
+
+    .container-error img {
+        max-width: 100%;
+        height: auto;
+    }
+</style>
+
