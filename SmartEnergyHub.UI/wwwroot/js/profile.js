@@ -27,4 +27,3 @@ function formatPhoneNumber() {
 
     $("#phoneNumber").text(formatted);
 }
-    

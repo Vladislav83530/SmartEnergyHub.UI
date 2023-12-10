@@ -13,10 +13,11 @@
         <div class="row mb-2">
             <div class="col-12">
                 <h2>Update info</h2>
+                <hr />
             </div>
         </div>
         <form method="post" asp-action="Update" asp-controller="Customer">
-            <input style="display:none;" asp-for="CustomerId" value="@Model.CustomerId"/>
+            <input style="display:none;" asp-for="CustomerId" value="@Model.CustomerId" />
             <div class="row">
                 <div class="col-3"></div>
                 <div class="col-3">
@@ -27,7 +28,7 @@
                 </div>
                 <div class="col-3">
                     <div class="form-group">
-                        <input class="form-control w-100" asp-for="FirstName" value="@Model.FirstName" required />
+                        <input placeholder="First name" class="form-control w-100" asp-for="FirstName" value="@Model.FirstName" required />
                         <span class="valid" asp-validation-for="FirstName"></span>
                     </div>
                 </div>
@@ -43,7 +44,7 @@
                     </p>
                 </div>
                 <div class="col-3">
-                    <input class="form-control w-100" asp-for="LastName" value="@Model.LastName" required />
+                    <input placeholder="Last name" class="form-control w-100" asp-for="LastName" value="@Model.LastName" required />
                     <span class="valid" asp-validation-for="LastName"></span>
                 </div>
                 <div class="col-3"></div>
@@ -58,8 +59,8 @@
                     </p>
                 </div>
                 <div class="col-3">
-                    <input class="form-control w-100" asp-for="PhoneNumber" value="@Model.PhoneNumber" required />
-                    <span class="valid" asp-validation-for="PhoneNumber"></span>
+                    <input id="phoneNumberInput" placeholder="Phone number" class="form-control w-100" asp-for="PhoneNumber" value="@Model.PhoneNumber" required />
+                    <span class="field-validation-error" id="errorMessage"></span>
                 </div>
                 <div class="col-3"></div>
             </div>
@@ -73,7 +74,7 @@
                     </p>
                 </div>
                 <div class="col-3">
-                    <input class="form-control w-100" asp-for="Region" value="@Model.Region" />
+                    <input placeholder="Region" class="form-control w-100" asp-for="Region" value="@Model.Region" />
                     <span class="valid" asp-validation-for="Region"></span>
                 </div>
                 <div class="col-3"></div>
@@ -88,7 +89,7 @@
                     </p>
                 </div>
                 <div class="col-3">
-                    <input class="form-control w-100" asp-for="City" value="@Model.City" />
+                    <input placeholder="City" class="form-control w-100" asp-for="City" value="@Model.City" />
                     <span class="valid" asp-validation-for="City"></span>
                 </div>
                 <div class="col-3"></div>
@@ -103,7 +104,7 @@
                     </p>
                 </div>
                 <div class="col-3">
-                    <input class="form-control w-100" asp-for="Street" value="@Model.Street" />
+                    <input placeholder="Street" class="form-control w-100" asp-for="Street" value="@Model.Street" />
                     <span class="valid" asp-validation-for="Street"></span>
                 </div>
                 <div class="col-3"></div>
@@ -118,7 +119,7 @@
                     </p>
                 </div>
                 <div class="col-3">
-                    <input class="form-control w-100" asp-for="HouseNumber" value="@Model.HouseNumber" />
+                    <input placeholder="House number" class="form-control w-100" asp-for="HouseNumber" value="@Model.HouseNumber" />
                     <span class="valid" asp-validation-for="HouseNumber"></span>
                 </div>
                 <div class="col-3"></div>
@@ -133,7 +134,7 @@
                     </p>
                 </div>
                 <div class="col-3">
-                    <input class="form-control w-100" asp-for="FlatNumber" value="@Model.FlatNumber" />
+                    <input placeholder="Flat number" class="form-control w-100" asp-for="FlatNumber" value="@Model.FlatNumber" />
                     <span class="valid" asp-validation-for="FlatNumber"></span>
                 </div>
                 <div class="col-3"></div>
@@ -152,8 +153,7 @@
                     </div>
                 }
             </div>
-
-            <div class="row">
+            <div class="row mt-3">
                 <div class="col-3"></div>
                 <div class="col-6">
                     <input type="submit" class="btn btn-primary w-100" value="Save" />
@@ -163,3 +163,24 @@
         </form>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('#phoneNumberInput').on('input', function () {
+            validatePhoneNumber();
+        });
+    });
+
+    function validatePhoneNumber() {
+        var phoneNumberInput = $('#phoneNumberInput');
+        var errorMessage = $('#errorMessage');
+
+        var phoneNumberPattern = /^(?:\+38)?(0[5-9][0-9]\d{7})$/;
+
+        if (phoneNumberPattern.test(phoneNumberInput.val())) {
+            errorMessage.text('');
+        } else {
+            errorMessage.text('Incorrect phone number');
+        }
+    }
+</script>

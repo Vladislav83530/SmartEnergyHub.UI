@@ -7,17 +7,17 @@
 
 @model CustomerLoginModel
 
-<div class="container w-25">
+<div class="container w-25 login-block">
     <h2 class="maint-title">Log in</h2>
     <form method="post" asp-controller="AuthCustomer" asp-action="Login">
         <div class="form-group">
             <label for="Email">Email</label>
-            <input asp-for="Email" type="email" class="form-control" required />
+            <input placeholder="Email" asp-for="Email" type="email" class="form-control" required />
             <span class="valid" asp-validation-for="Email"></span>
         </div>
         <div class="form-group">
             <label for="Password">Password</label>
-            <input asp-for="Password" type="password" class="form-control" required />
+            <input placeholder="Password" asp-for="Password" type="password" class="form-control" required />
             <span class="valid" asp-validation-for="Password"></span>
         </div>
 
