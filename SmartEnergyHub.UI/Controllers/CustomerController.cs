@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using SmartEnergyHub.DAL.Entities;
 using SmartEnergyHub.UI.Models.Customer;
 using SmartEnergyHub.UI.Providers.NetworkProvider;
 using SmartEnergyHub.UI.Settings;
@@ -9,14 +11,17 @@ namespace SmartEnergyHub.UI.Controllers
     public class CustomerController : Controller
     {
         private readonly INetworkProvider _networkProvider;
+        private readonly SignInManager<Customer> _signInManager;
         private readonly ApiSettings _apiSettings;
 
         public CustomerController(
             INetworkProvider networkProvider,
+            SignInManager<Customer> signInManager,
             IOptions<ApiSettings> apiSettings
         )
         {
             this._networkProvider = networkProvider ?? throw new ArgumentNullException(nameof(networkProvider));
+            this._signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
             this._apiSettings = apiSettings?.Value ?? throw new ArgumentNullException(nameof(apiSettings));
         }
 
@@ -85,6 +90,27 @@ namespace SmartEnergyHub.UI.Controllers
             if (response.Successful)
             {
                 return RedirectToAction("Index", "Customer", new { id = model.CustomerId });
+            }
+
+            return RedirectToAction("BadRequest", "Error");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return RedirectToAction("NotFound", "Error");
+            }
+
+            await _signInManager.SignOutAsync();
+
+            string url = $"/api/customer/delete/{id}";
+            Response<string> response = await this._networkProvider.DeleteAsync<string>(this._apiSettings, url);          
+
+            if (response.Successful)
+            {        
+                return RedirectToAction("Index", "Home");
             }
 
             return RedirectToAction("BadRequest", "Error");
