@@ -3,7 +3,7 @@
 @model CustomerModel
 
 @section Scripts {
-    <script type="text/javascript" src="" asp-append-version="true"></script>
+    <script type="text/javascript" src="/js/profile.js" asp-append-version="true"></script>
 }
 
 @section Styles {
@@ -16,27 +16,52 @@
             <h2>@Model.FirstName @Model.LastName</h2>
             <div class="row">
                 <div class="col-6 field-name-block">
-                    <p>Email:</p>
-                    <p>Phone number:</p>
+                    <h4>Contact</h4>
+                    <hr />
+                    <p>
+                        <img src="~/images/email.png" width="20" height="20" class="mb-1"/>
+                        Email:
+                    </p>
+                    <p>
+                        <img src="~/images/phone-call.png" width="20" height="20" class="mb-1" />
+                        Phone number:
+                    </p>
                     <h4>Location</h4>
                     <hr />
-                    <p>Region:</p>
-                    <p>City:</p>
-                    <p>Street:</p>
-                    <p>House number:</p>
-                    @if (string.IsNullOrEmpty(Model.FlatNumber)) {
-                        <p>Flat number:</p>
+                    <p>
+                        <img src="~/images/map.png" width="20" height="20" class="mb-1" />
+                        Region:
+                    </p>
+                    <p>
+                        <img src="~/images/buildings.png" width="20" height="20" class="mb-1" />
+                        City:
+                    </p>
+                    <p>
+                        <img src="~/images/streets.png" width="20" height="20" class="mb-1" />
+                        Street:
+                    </p>
+                    <p>
+                        <img src="~/images/home-icon-silhouette.png" width="20" height="20" class="mb-1" />
+                        House number:
+                    </p>
+                    @if (!string.IsNullOrEmpty(Model.FlatNumber)) {
+                        <p>
+                            <img src="~/images/flat.png" width="20" height="20" class="mb-1" />
+                            Flat number:
+                        </p>
                     }
                 </div>
                 <div class="col-6 value-block">
-                    <p>@Model.Email</p>
-                    <p>@Model.PhoneNumber</p>
+                    <div class="contact-block">
+                        <p>@Model.Email</p>
+                        <p id="phoneNumber">@Model.PhoneNumber</p>
+                    </div>
                     <hr class="value-block-line" />
                     <p>@Model.Region</p>
                     <p>@Model.City</p>
                     <p>@Model.Street</p>
                     <p>@Model.HouseNumber</p>
-                    @if (string.IsNullOrEmpty(Model.FlatNumber))
+                    @if (!string.IsNullOrEmpty(Model.FlatNumber))
                     {
                         <p>@Model.FlatNumber</p>
                     }
@@ -50,7 +75,7 @@
                 </div>
                 <div class="col-4 btn-block">
                     <div class="row mb-2">
-                        <a class="btn w-100">
+                        <a class="btn w-100 btn-update" data-id="@Model.CustomerId">
                             <img src="~/images/updated.png" width="40" height="40" />
                             <span class="tooltip">Update info</span>
                         </a>

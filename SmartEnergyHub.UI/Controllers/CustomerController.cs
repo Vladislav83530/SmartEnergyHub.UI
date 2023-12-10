@@ -25,19 +25,78 @@ namespace SmartEnergyHub.UI.Controllers
         {
             if (string.IsNullOrEmpty(id))
             {
-                return View("NotFound", "Error");
+                return RedirectToAction("NotFound", "Error");
             }
 
-            string url = $"/api/customer/{id}";
-
-            Response<CustomerModel> response = await this._networkProvider.GetAsync<CustomerModel>(this._apiSettings, url);
+            Response<CustomerModel> response = await GetCustomerModelAsync(id);
 
             if (response.Successful && response.Data != null)
             {
                 return View(response.Data);
             }
 
-            return View("BadRequest", "Error");
+            return RedirectToAction("BadRequest", "Error");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return RedirectToAction("NotFound", "Error");
+            }
+
+            Response<CustomerModel> response = await GetCustomerModelAsync(id);
+
+            if (response.Successful && response.Data != null)
+            {
+                UpdateCustomerModel updateModel = new UpdateCustomerModel
+                {
+                    CustomerId = response.Data.CustomerId,
+                    FirstName = response.Data.FirstName,
+                    LastName = response.Data.LastName,
+                    PhoneNumber = response.Data.PhoneNumber,
+                    Region = response.Data.Region,
+                    City = response.Data.City,
+                    Street = response.Data.Street,
+                    HouseNumber = response.Data.HouseNumber,
+                    FlatNumber = response.Data.FlatNumber
+                };
+
+
+                return PartialView("_Update", updateModel);
+            }
+
+            return RedirectToAction("BadRequest", "Error");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(UpdateCustomerModel model)
+        {
+            if (model == null)
+            {
+                return RedirectToAction("BadRequest", "Error");
+            }
+
+            string url = $"/api/customer/update";
+
+            Response<string> response = await this._networkProvider.PostAsync<string>(this._apiSettings, url, model);
+
+            if (response.Successful)
+            {
+                return RedirectToAction("Index", "Customer", new { id = model.CustomerId });
+            }
+
+            return RedirectToAction("BadRequest", "Error");
+        }
+
+        private async Task<Response<CustomerModel>> GetCustomerModelAsync(string id)
+        {
+            string url = $"/api/customer/{id}";
+
+            Response<CustomerModel> response = await this._networkProvider.GetAsync<CustomerModel>(this._apiSettings, url);
+
+            return response;
         }
     }
 }

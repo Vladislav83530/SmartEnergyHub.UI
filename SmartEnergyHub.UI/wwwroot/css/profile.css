@@ -1,8 +1,13 @@
-﻿.container-profile {
+﻿hr {
+    margin-top: 0;
+}
+
+.container-profile {
     background-color: #fff;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .profile-img {
@@ -29,11 +34,15 @@
 }
 
 .value-block-line {
-    margin-top: 54px;
+    margin-top: 46px;
 }
 
 .right-block {
     text-align: center;
+}
+
+.contact-block {
+    margin-top: 52px;
 }
 
 .btn-block {
@@ -62,4 +71,10 @@
 .btn:hover .tooltip {
     visibility: visible;
     opacity: 1;
+}
+
+.input-label {
+    font-size: 18px;
+    font-weight: 600;
+    text-align: left;
 }

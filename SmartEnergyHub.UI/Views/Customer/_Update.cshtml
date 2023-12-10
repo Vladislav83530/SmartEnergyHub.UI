@@ -1,0 +1,165 @@
+﻿@using SmartEnergyHub.UI.Models.Customer
+
+@model UpdateCustomerModel
+
+@{
+    var excludedProperties = new List<string> { "FirstName", "LastName", "PhoneNumber", "Region", "City", "HouseNumber", "FlatNumber" };
+    var allErrors = ViewData.ModelState.Values.SelectMany(v => v.Errors).ToList();
+    var unprocessedErrors = allErrors.Where(error => !excludedProperties.Any(prop => error.ErrorMessage.Contains(prop)));
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="row mb-2">
+            <div class="col-12">
+                <h2>Update info</h2>
+            </div>
+        </div>
+        <form method="post" asp-action="Update" asp-controller="Customer">
+            <input style="display:none;" asp-for="CustomerId" value="@Model.CustomerId"/>
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-3">
+                    <p class="input-label">
+                        <img src="~/images/profile.png" width="20" height="20" class="mb-1" />
+                        First name:
+                    </p>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <input class="form-control w-100" asp-for="FirstName" value="@Model.FirstName" required />
+                        <span class="valid" asp-validation-for="FirstName"></span>
+                    </div>
+                </div>
+                <div class="col-3"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-3">
+                    <p class="input-label">
+                        <img src="~/images/user (2).png" width="20" height="20" class="mb-1" />
+                        Last name:
+                    </p>
+                </div>
+                <div class="col-3">
+                    <input class="form-control w-100" asp-for="LastName" value="@Model.LastName" required />
+                    <span class="valid" asp-validation-for="LastName"></span>
+                </div>
+                <div class="col-3"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-3">
+                    <p class="input-label">
+                        <img src="~/images/phone-call.png" width="20" height="20" class="mb-1" />
+                        Phone number:
+                    </p>
+                </div>
+                <div class="col-3">
+                    <input class="form-control w-100" asp-for="PhoneNumber" value="@Model.PhoneNumber" required />
+                    <span class="valid" asp-validation-for="PhoneNumber"></span>
+                </div>
+                <div class="col-3"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-3">
+                    <p class="input-label">
+                        <img src="~/images/map.png" width="20" height="20" class="mb-1" />
+                        Region:
+                    </p>
+                </div>
+                <div class="col-3">
+                    <input class="form-control w-100" asp-for="Region" value="@Model.Region" />
+                    <span class="valid" asp-validation-for="Region"></span>
+                </div>
+                <div class="col-3"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-3">
+                    <p class="input-label">
+                        <img src="~/images/buildings.png" width="20" height="20" class="mb-1" />
+                        City:
+                    </p>
+                </div>
+                <div class="col-3">
+                    <input class="form-control w-100" asp-for="City" value="@Model.City" />
+                    <span class="valid" asp-validation-for="City"></span>
+                </div>
+                <div class="col-3"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-3">
+                    <p class="input-label">
+                        <img src="~/images/streets.png" width="20" height="20" class="mb-1" />
+                        Street:
+                    </p>
+                </div>
+                <div class="col-3">
+                    <input class="form-control w-100" asp-for="Street" value="@Model.Street" />
+                    <span class="valid" asp-validation-for="Street"></span>
+                </div>
+                <div class="col-3"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-3">
+                    <p class="input-label">
+                        <img src="~/images/home-icon-silhouette.png" width="20" height="20" class="mb-1" />
+                        House number:
+                    </p>
+                </div>
+                <div class="col-3">
+                    <input class="form-control w-100" asp-for="HouseNumber" value="@Model.HouseNumber" />
+                    <span class="valid" asp-validation-for="HouseNumber"></span>
+                </div>
+                <div class="col-3"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-3">
+                    <p class="input-label">
+                        <img src="~/images/flat.png" width="20" height="20" class="mb-1" />
+                        Flat number:
+                    </p>
+                </div>
+                <div class="col-3">
+                    <input class="form-control w-100" asp-for="FlatNumber" value="@Model.FlatNumber" />
+                    <span class="valid" asp-validation-for="FlatNumber"></span>
+                </div>
+                <div class="col-3"></div>
+            </div>
+
+            <div class="field-validation-error">
+                @if (unprocessedErrors.Any())
+                {
+                    <div class="field-validation-error">
+                        <ul>
+                            @foreach (var error in unprocessedErrors)
+                            {
+                                <li>@error.ErrorMessage</li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <input type="submit" class="btn btn-primary w-100" value="Save" />
+                </div>
+                <div class="col-3"></div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -2,14 +2,13 @@
 
 namespace SmartEnergyHub.UI.Models.Customer
 {
-    public class CustomerModel
+    public class UpdateCustomerModel
     {
         public string CustomerId { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
-        public string Email { get; set; }
         [Required]
         [RegularExpression(@"^(?:\+38)?(0[5-9][0-9]\d{7})$", ErrorMessage = "Incorrect phone number")]
         public string PhoneNumber { get; set; }

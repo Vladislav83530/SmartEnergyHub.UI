@@ -35,9 +35,9 @@ body {
 }
 
 .btn-primary {
-    padding: 10px;
     color: white;
     border-color: transparent;
     font-size: 20px;
     font-weight: 700;
+    background-color: #5adbb5;
 }
