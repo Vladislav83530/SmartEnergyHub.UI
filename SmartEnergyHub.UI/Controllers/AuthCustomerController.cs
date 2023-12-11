@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using SmartEnergyHub.DAL.Entities;
 using SmartEnergyHub.UI.Models.AuthCustomer;
+using SmartEnergyHub.UI.Providers.NetworkProvider;
+using SmartEnergyHub.UI.Settings;
 
 namespace SmartEnergyHub.API.Controllers
 {
@@ -9,13 +12,19 @@ namespace SmartEnergyHub.API.Controllers
     {
         private readonly UserManager<Customer> _userManager;
         private readonly SignInManager<Customer> _signInManager;
+        private readonly INetworkProvider _networkProvider;
+        private readonly ApiSettings _apiSettings;
 
         public AuthCustomerController(
             UserManager<Customer> userManager, 
-            SignInManager<Customer> signInManager)
+            SignInManager<Customer> signInManager,
+            INetworkProvider networkProvider,
+            IOptions<ApiSettings> apiSettings)
         {
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
             _signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
+            _networkProvider = networkProvider ?? throw new ArgumentNullException(nameof(_networkProvider));
+            _apiSettings = apiSettings?.Value ?? throw new ArgumentNullException(nameof(apiSettings));
         }
 
         [HttpGet]
@@ -46,6 +55,7 @@ namespace SmartEnergyHub.API.Controllers
                 };
 
                 IdentityResult result = await _userManager.CreateAsync(customer, model.Password);
+                string customerId = await _userManager.GetUserIdAsync(customer);
 
                 if (!result.Succeeded)
                 {
@@ -55,6 +65,17 @@ namespace SmartEnergyHub.API.Controllers
                     }
 
                     return View(model);
+                }
+
+                string url = $"/api/customer/add-residence/{customerId}";
+                Response<string> response = await this._networkProvider.PostAsync<string>(this._apiSettings, url);
+
+                if (!response.Successful)
+                {
+                    string deleteUrl = $"/api/customer/delete/{customerId}";
+                    _ = await this._networkProvider.DeleteAsync<string>(this._apiSettings, deleteUrl);
+
+                    return RedirectToAction("Register", "Customer");
                 }
 
                 await _signInManager.SignInAsync(customer, false);
