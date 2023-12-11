@@ -1,0 +1,10 @@
+﻿@using System.Security.Claims;
+
+@section Scripts {
+    <script type="text/javascript" src="/js/device.js" asp-append-version="true"></script>
+}
+
+<div id="main-device-block" class="row" data-userid="@User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value">
+    <div class="col-8"></div>
+    <div id="residence-block" class="col-4"></div>
+</div>
