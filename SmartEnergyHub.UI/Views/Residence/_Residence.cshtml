@@ -1,6 +1,83 @@
 ﻿@using SmartEnergyHub.UI.Models.Residence
+@using SmartEnergyHub.UI.Models.Enums
 
 @model ResidenceModel
 
-<p>@Model.OwnerFirstName</p>
-<p>@Model.OwnerLastName</p>
+<div class="row">
+    <div class="col-12">
+        @if (string.IsNullOrEmpty(Model.FlatNumber))
+        {
+            <h3>Your House</h3>
+        }
+        else
+        {
+            <h3>Your Apartment</h3>
+        }
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 residence-title-block">
+        <h5>Main information</h5>
+    </div>
+</div>
+<div class="row">
+    <div class="col-9">
+        <p class="info-text">
+            <b>Address:</b> @Model.Region, @Model.City, @Model.Street @Model.HouseNumber
+            @if (!string.IsNullOrEmpty(Model.FlatNumber))
+            {
+                <span>, flat: @Model.FlatNumber</span>
+            }
+        </p>
+        <p class="info-text">
+            <b>Owner:</b> @Model.OwnerFirstName @Model.OwnerLastName
+        </p>
+        <hr />
+    </div>
+    <div class="col-3">
+        <a asp-action="" asp-controller="" class="btn w-100">
+            <img src="~/images/data-analytics.png" width="40" height="40" />
+            <span class="tooltip">Analytics and analysis</span>
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 status-block">
+        <h5>Status:</h5>
+        @{
+            string statusColor = Model.ConnectionStatus == ConnectionStatus.Connected ? "green" :
+            Model.ConnectionStatus == ConnectionStatus.Pause ? "yellow" : "red";
+
+        }
+        <p class="info-text" style="color: @statusColor">@Model.ConnectionStatus</p>
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 residence-title-block">
+        <h5>Additional information</h5>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <p class="info-text">
+            <b>Device count:</b> @Model.DeviceCount
+        </p>
+        <p class="info-text">
+            <b>Room count:</b> @Model.RoomCount
+        </p>        <p class="info-text">
+            <b>Area:</b> @Model.Area m<sup>2</sup>
+        </p>
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <a class="btn btn-primary w-100"><img src="~/images/edit.png" width="20" height="20" class="mb-1" /> Edit info</a>
+    </div>
+    <div class="col-6">
+        <a class="btn btn-danger btn-text w-100"><img src="~/images/trash-bin.png" width="22" height="22" class="mb-1" /> Clear info</a>
+    </div>
+</div>
+<hr />

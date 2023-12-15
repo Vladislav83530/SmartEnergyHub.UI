@@ -4,7 +4,15 @@
     <script type="text/javascript" src="/js/device.js" asp-append-version="true"></script>
 }
 
-<div id="main-device-block" class="row" data-userid="@User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value">
-    <div class="col-8"></div>
-    <div id="residence-block" class="col-4"></div>
+@section Styles {
+    <link href="/css/device.css" rel="stylesheet" asp-append-version="true" />
+}
+
+
+<div id="main-device-block" class="container mt-5" data-userid="@User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value">
+    <div class="row">
+        <div class="col-8"></div>
+        <div id="residence-block" class="col-4 container-residence">
+        </div>
+    </div>
 </div>

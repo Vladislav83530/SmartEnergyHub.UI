@@ -1,0 +1,29 @@
+﻿.container-residence {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.residence-title-block h5 {
+    float: left;
+    color: #7ed321;
+}
+
+.info-text {
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+    margin-bottom: 0;
+}
+
+.status-block h5 {
+    float: left;
+    color: #7ed321;
+    margin-right: 5px;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
