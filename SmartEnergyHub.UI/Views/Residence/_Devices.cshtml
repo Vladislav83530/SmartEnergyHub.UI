@@ -1,0 +1,67 @@
+﻿@using SmartEnergyHub.UI.Models.Device
+
+@model List<DeviceModel>
+
+@foreach (DeviceModel device in Model)
+{
+    <div class="row container-device">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-3">
+                    <img src="~/images/buildings.png" width="50">
+                </div>
+                <div class="col-9">
+                    <h6>@device.Name</h6>
+                    @if (device.IsActive)
+                    {
+                        <div class="status-circle active"></div>
+                    }
+                    else
+                    {
+                        <div class="status-circle inactive"></div>
+                    }
+                    <div class="row">
+                        <div class="col-2">Device type:</div>
+                        <div class="col-8">@device.DeviceType.ToString()</div>
+                    </div>
+                     <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-8"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-8"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-8"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<style>
+    .container-device {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .status-circle {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+    }
+
+    .status-circle .active {
+        background-color: green;
+    }
+
+    .inactive {
+        background-color: yellow;
+    }
+</style>

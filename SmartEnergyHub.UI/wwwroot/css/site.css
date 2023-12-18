@@ -47,7 +47,15 @@ footer {
 .btn-primary {
     color: white;
     border-color: transparent;
-    font-size: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #5adbb5;
+}
+
+.btn-primary:hover {
+    color: white;
+    border-color: transparent;
+    font-size: 18px;
     font-weight: 600;
     background-color: #5adbb5;
 }
@@ -56,6 +64,20 @@ footer {
     font-size: 20px;
     font-weight: 600;
     border-color: transparent;
+}
+
+.btn-info {
+    border-color: transparent;
+    background-color: #12c9ff;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.btn-info:hover {
+    border-color: transparent;
+    background-color: #12c9ff;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 main {

@@ -4,6 +4,7 @@ namespace SmartEnergyHub.UI.Models.Residence
 {
     public class ResidenceModel
     {
+        public int Id { get; set; }
         public int DeviceCount { get; set; }
         public int RoomCount { get; set; }
         public double Area { get; set; }

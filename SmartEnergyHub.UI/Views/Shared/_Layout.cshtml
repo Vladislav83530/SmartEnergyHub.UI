@@ -57,7 +57,7 @@
                                         <a asp-action="Index" asp-controller="Customer" asp-route-id="@User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value">
                                             <p><img src="~/images/user (1).png" width="20" height="20" class="mr-1 mb-2" />Profile</p>
                                         </a>
-                                        <a href="#">
+                                        <a asp-action="Index" asp-controller="Device">
                                             <p><img src="~/images/home.png" width="20" height="20" class="mr-1 mb-2" />Your home</p>
                                         </a>
                                         <a asp-controller="AuthCustomer" asp-action="Logout">

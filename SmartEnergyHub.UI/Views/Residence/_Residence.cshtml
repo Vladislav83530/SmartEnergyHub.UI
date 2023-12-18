@@ -3,7 +3,7 @@
 
 @model ResidenceModel
 
-<div class="row">
+<div id="residence" class="row" data-residenceId="@Model.Id">
     <div class="col-12">
         @if (string.IsNullOrEmpty(Model.FlatNumber))
         {
@@ -81,3 +81,11 @@
     </div>
 </div>
 <hr />
+@if (Model.DeviceCount <= 0)
+{
+    <div class="row">
+        <div class="col-12">
+            <a id="connectionButton" data-residenceId="@Model.Id" data-url="/Residence/ConnectToMainHub" class="btn btn-info w-100 fs-5"><img src="~/images/url.png" width="20" height="20" class="mb-1" /> Connection</a>
+        </div>
+    </div>
+}
