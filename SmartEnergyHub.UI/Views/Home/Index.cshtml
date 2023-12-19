@@ -1,4 +1,6 @@
-﻿<link rel="stylesheet" href="~/css/layout.css" />
+﻿@section Styles {
+    <link href="/css/home.css" rel="stylesheet" asp-append-version="true" />
+}
 
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -26,3 +28,120 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
+
+<div class="container mt-3">
+    <div class="row w-100">
+        <div class="col-4">
+            <div class="card" style="width: 25rem;">
+                <img src="~/images/digital-tablet-screen-with-smart-home-controller-wooden-table.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card" style="width: 25rem;">
+                <img src="~/images/smart-home-innovation-technology-with-woman-using-control-panel.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card" style="width: 25rem;">
+                <img src="~/images/smart-speaker-house-control-innovative-technology.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="my-5 py-5 z-depth-1" style="background-color: #5adbb5;">
+    <section class="px-md-5 mx-md-5 text-center dark-grey-text">
+        <h3 class="font-weight-bold mb-5">Call to action</h3>
+        <div class="row">
+            <div class="col-md-6 mb-4 mb-md-0">
+
+                <img src="~/images/data-analytics.png" width="70"/>
+
+                <p class="font-weight-bold my-3">First action</p>
+
+                <p class="text-muted mx-md-5">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+
+                <a class="btn btn-dark btn-md w-25" href="#" role="button">Go Pro</a>
+
+            </div>
+
+            <div class="col-md-6 mb-4 mb-md-0">
+
+                <img src="~/images/cogwheel.png" width="70" />
+
+                <p class="font-weight-bold my-3">Second action</p>
+
+                <p class="text-muted mx-md-5">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+
+                <a class="btn btn-dark btn-md w-15" href="#" role="button">Upload</a>
+
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+<section class="fdb-block mt-3">
+    <div class="container">
+        <div class="row text-center justify-content-center">
+            <div class="col-12 col-md-8 col-lg-7">
+                <h1>Contact Us</h1>
+                <p class="lead">One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+            </div>
+        </div>
+
+        <div class="row pt-4">
+            <div class="col-12 col-md-6">
+                <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2540.8259543382623!2d30.451791515703546!3d50.44897377947264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4ccacdaa30f6f%3A0xc45dd9d06e2cace3!2z0JzQvtGB0LrQvtC90LDRjyDRg9Cz0LDQsCwg0JrRgNGH0LXQudCwLCAxNjUsINCa0L7RgdGC0L7QsdGB0YLRjA!5e0!3m2!1sen!2sro!4v1507381157656"
+                        width="100%" height="300" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+            </div>
+
+            <div class="col-12 col-md-6 pt-5 pt-md-0">
+                <form>
+                    <div class="row">
+                        <div class="col">
+                            <input type="email" class="form-control" placeholder="Enter email">
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col">
+                            <input type="email" class="form-control" placeholder="Subject">
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col">
+                            <textarea class="form-control" name="message" rows="3" placeholder="How can we help?"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
