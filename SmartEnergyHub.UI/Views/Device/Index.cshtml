@@ -9,14 +9,29 @@
 }
 
 
-<div id="main-device-block" class="container mt-5" data-userid="@User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value">
+<div id="main-device-block" class="container mt-5 device-page" data-userid="@User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value">
     <div class="row">
         <div class="col-8">
             <div class="row">
                 <div class="col-12"></div>
             </div>
             <div class="row">
-                <div id="device-block" class="col-12"></div>
+                <div id="device-block" class="col-12">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
         <div id="residence-block" class="col-4 container-residence">

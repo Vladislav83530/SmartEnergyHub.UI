@@ -1,4 +1,7 @@
-﻿@using SmartEnergyHub.UI.Models.Device
+﻿@using SmartEnergyHub.DAL.Entities.Enums;
+@using SmartEnergyHub.UI.Models.Device
+@using System.ComponentModel;
+@using System.Text.RegularExpressions;
 
 @model List<DeviceModel>
 
@@ -8,33 +11,97 @@
         <div class="col-12">
             <div class="row">
                 <div class="col-3">
-                    <img src="~/images/buildings.png" width="50">
+                    @if(device.DeviceType == DeviceType.SmartVacuumCleaner)
+                    {
+                        <img class="device-img" src="~/images/cleaning-robot.png" width="150">
+                    }
+                    @if (device.DeviceType == DeviceType.PC)
+                    {
+                        <img class="device-img" src="~/images/computer.png" width="150">
+                    }
+                    @if (device.DeviceType == DeviceType.Refrigerator)
+                    {
+                        <img class="device-img" src="~/images/fridge.png" width="150">
+                    }
+                    @if (device.DeviceType == DeviceType.Dryer)
+                    {
+                        <img class="device-img" src="~/images/tumble-dryer.png" width="150">
+                    }
                 </div>
-                <div class="col-9">
-                    <h6>@device.Name</h6>
-                    @if (device.IsActive)
-                    {
-                        <div class="status-circle active"></div>
-                    }
-                    else
-                    {
-                        <div class="status-circle inactive"></div>
-                    }
+                <div class="col-8">
                     <div class="row">
-                        <div class="col-2">Device type:</div>
-                        <div class="col-8">@device.DeviceType.ToString()</div>
-                    </div>
-                     <div class="row">
-                        <div class="col-2"></div>
-                        <div class="col-8"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2"></div>
-                        <div class="col-8"></div>
+                        <div class="col-11 title-device-block">
+                            <h5>@device.Name</h5>
+                            @if (device.IsActive)
+                            {
+                                <div class="status-circle active"></div>
+                            }
+                            else
+                            {
+                                <div class="status-circle inactive"></div>
+                            }               
+                        </div>
+                        <div class="col-1">
+                            @if (device.IsAutonomous)
+                            {
+                                <img width="25" style="margin-left:40px;" src="~/images/smartphone-charger.png">
+                            }
+                        </div>                    
                     </div>
                     <div class="row">
-                        <div class="col-2"></div>
-                        <div class="col-8"></div>
+                        <div class="col-4 device-label">Device type:</div>
+                        <div class="col-8 device-value">
+                            @(Regex.Replace(device.DeviceType.ToString(), @"(?<!^)([A-Z])(?=[a-z])", " $1"))                
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 device-label">Room:</div>
+                        <div class="col-8 device-value">
+                            @(Regex.Replace(device.RoomType.ToString(), @"(?<!^)([A-Z])(?=[a-z])", " $1"))
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 device-label">Last on:</div>
+                        <div class="col-8 device-value">
+                            @device.LastAccessTime
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 device-label">Serial number:</div>
+                        <div class="col-8 device-value">
+                            @device.SerialNumber
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 device-label">Access token:</div>
+                        <div class="col-8 device-value">
+                           @device.AccessToken
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 device-label">MAC address:</div>
+                        <div class="col-8 device-value">
+                            @device.MACAddress
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="row mt-5">
+                        <a class="btn">
+                            <img src="~/images/cogwheel.png" width="35" height="35" />
+                            <span class="tooltip">Manage</span>
+                        </a>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="toggle-container">
+                            <div class="device-label mb-1 pl-1">On/Off</div>
+                            <input type="checkbox" id="toggle-@Model.IndexOf(device)" class="toggle-input ">
+                            <label for="toggle-@Model.IndexOf(device)" class="toggle-label">
+                                <div class="toggle-inner"></div>
+                                <div class="toggle-switch"></div>
+                            </label>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -49,19 +116,95 @@
         border-radius: 8px;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         text-align: center;
+        width: 100%;
+        margin-bottom: 25px;
     }
 
     .status-circle {
-        width: 20px;
-        height: 20px;
+        width: 10px;
+        height: 10px;
         border-radius: 50%;
+        margin-bottom: 5px;
+        margin-left: 5px;
     }
 
-    .status-circle .active {
-        background-color: green;
-    }
+        .status-circle .active {
+            background-color: green;
+        }
 
     .inactive {
         background-color: yellow;
+    }
+
+    .title-device-block {
+        align-items: center;
+        display: flex;
+    }
+
+    .device-img {
+        border: 2px solid black;
+        border-radius: 10px;
+        padding: 5px;
+    }
+
+    .device-value {
+        text-align: left;
+        padding: 0;
+    }
+
+    .device-label {
+        padding-right: 0;
+        text-align: left;
+        font-weight: 600;
+    }
+
+    .toggle-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .toggle-input {
+        display: none;
+    }
+
+    .toggle-label {
+        display: block;
+        width: 60px;
+        height: 30px;
+        background-color: #ddd;
+        border-radius: 15px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .toggle-inner {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        width: 20px;
+        height: 20px;
+        background-color: #fff;
+        border-radius: 50%;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .toggle-switch {
+        position: absolute;
+        top: 5px;
+        left: 30px;
+        width: 25px;
+        height: 20px;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .toggle-input:checked + .toggle-label .toggle-inner {
+        transform: translateX(30px);
+    }
+
+    .toggle-input:checked + .toggle-label .toggle-switch {
+        background-color: #4CAF50;
     }
 </style>
