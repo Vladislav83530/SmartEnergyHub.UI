@@ -31,3 +31,26 @@
 .btn:hover {
     transform: scale(1.05);
 }
+
+#previous[disabled] {
+    color: #999;
+    background-color: #eee;
+    cursor: not-allowed;
+}
+
+#next[disabled] {
+    color: #999; 
+    background-color: #eee; 
+    cursor: not-allowed;
+}
+
+.form-check-input {
+    width: 25px;
+    height: 25px;
+}
+
+.form-check-label {
+    font-size: 16px;
+    margin-left: 15px;
+    margin-top: 5px;
+}

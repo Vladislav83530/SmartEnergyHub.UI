@@ -5,6 +5,7 @@
 
 @model List<DeviceModel>
 
+<div id="deviceCountData" style="display: none;">@Model.Count()</div>
 @foreach (DeviceModel device in Model)
 {
     <div class="row container-device">
@@ -26,6 +27,38 @@
                     @if (device.DeviceType == DeviceType.Dryer)
                     {
                         <img class="device-img" src="~/images/tumble-dryer.png" width="150">
+                    }
+                    @if (device.DeviceType == DeviceType.Dishwasher)
+                    {
+                        <img class="device-img" src="~/images/dishwasher.png" width="150">
+                    }
+                    @if (device.DeviceType == DeviceType.Laptop)
+                    {
+                        <img class="device-img" src="~/images/web-traffic.png" width="150">
+                    }
+                    @if (device.DeviceType == DeviceType.CoffeMaker)
+                    {
+                        <img class="device-img" src="~/images/coffee-machine.png" width="150">
+                    }
+                    @if (device.DeviceType == DeviceType.Lamp)
+                    {
+                        <img class="device-img" src="~/images/light-bulb.png" width="150">
+                    }
+                    @if (device.DeviceType == DeviceType.Cooktop)
+                    {
+                        <img class="device-img" src="~/images/induction-stove.png" width="150">
+                    }
+                    @if (device.DeviceType == DeviceType.SecuritySystem)
+                    {
+                        <img class="device-img" src="~/images/cyber-security.png" width="150">
+                    }
+                    @if (device.DeviceType == DeviceType.AirConditioner)
+                    {
+                        <img class="device-img" src="~/images/air-conditioner.png" width="150">
+                    }
+                    @if (device.DeviceType == DeviceType.WashingMachine)
+                    {
+                        <img class="device-img" src="~/images/laundry-machine.png" width="150">
                     }
                 </div>
                 <div class="col-8">

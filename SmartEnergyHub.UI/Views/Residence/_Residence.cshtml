@@ -1,7 +1,22 @@
-﻿@using SmartEnergyHub.UI.Models.Residence
+﻿@using SmartEnergyHub.DAL.Entities.Enums;
+@using SmartEnergyHub.UI.Models.Residence
 @using SmartEnergyHub.UI.Models.Enums
+@using System.Text.RegularExpressions;
 
 @model ResidenceModel
+
+@{
+    var deviceTypes = Enum.GetValues(typeof(DeviceType)).Cast<DeviceType>().ToList();
+    int halfCount = deviceTypes.Count / 2;
+    var firstHalfDeviceType = deviceTypes.Take(halfCount);
+    var secondHalfDeviceType = deviceTypes.Skip(halfCount);
+
+    var roomTypes = Enum.GetValues(typeof(RoomType)).Cast<RoomType>().ToList();
+    int halfCountRoomType = roomTypes.Count / 2;
+    var firstHalfRoomType = roomTypes.Take(halfCountRoomType);
+    var secondHalfRoomType = roomTypes.Skip(halfCountRoomType);
+}
+
 
 <div id="residence" class="row" data-residenceId="@Model.Id">
     <div class="col-12">
@@ -46,8 +61,8 @@
     <div class="col-12 status-block">
         <h5>Status:</h5>
         @{
-            string statusColor = Model.ConnectionStatus == ConnectionStatus.Connected ? "green" :
-            Model.ConnectionStatus == ConnectionStatus.Pause ? "yellow" : "red";
+            string statusColor = Model.ConnectionStatus == SmartEnergyHub.UI.Models.Enums.ConnectionStatus.Connected ? "green" :
+            Model.ConnectionStatus == SmartEnergyHub.UI.Models.Enums.ConnectionStatus.Pause ? "yellow" : "red";
 
         }
         <p class="info-text" style="color: @statusColor">@Model.ConnectionStatus</p>
@@ -62,7 +77,7 @@
 <div class="row">
     <div class="col-12">
         <p class="info-text">
-            <b>Device count:</b> @Model.DeviceCount
+            <b>Device count:</b> <span id="devicecount">@Model.DeviceCount</span>
         </p>
         <p class="info-text">
             <b>Room count:</b> @Model.RoomCount
@@ -88,4 +103,104 @@
             <a id="connectionButton" data-residenceId="@Model.Id" data-url="/Residence/ConnectToMainHub" class="btn btn-info w-100 fs-5"><img src="~/images/url.png" width="20" height="20" class="mb-1" /> Connection</a>
         </div>
     </div>
+    <hr />
 }
+<div class="row">
+    <div class="col-12 residence-title-block">
+        <h5>Main information</h5>
+    </div>
+</div>
+<div class="row">
+    <div class="col-10">
+        <input id="searchInput" class="form-control w-100 h-100" value="" placeholder="Enter device name..."/>
+    </div>
+    <div class="col-2">
+        <a id="submitSearchInput" class="btn btn-primary"><img src="~/images/search.png" width="18" height="18" /></a>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-12 residence-title-block">
+        <h5>Device type</h5>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6" style="text-align:left;">
+        @foreach (var type in firstHalfDeviceType)
+        {
+            <input class="form-check-input mb-2 checkbox-group" type="checkbox" id="@type" name="deviceTypes" value="@type">
+            <label class="form-check-label mb-2" for="@type">@(Regex.Replace(type.ToString(), @"(?<!^)([A-Z])(?=[a-z])", " $1"))</label>
+            <br>
+        }
+    </div>
+    <div class="col-6" style=" text-align:left;">
+        @foreach (var type in secondHalfDeviceType)
+        {
+            <input class="form-check-input mb-2 checkbox-group" type="checkbox" id="@type" name="deviceTypes" value="@type">
+            <label class="form-check-label mb-2" for="@type">@(Regex.Replace(type.ToString(), @"(?<!^)([A-Z])(?=[a-z])", " $1"))</label>
+            <br>
+        }
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-12 residence-title-block">
+        <h5>Room type</h5>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6" style="text-align:left;">
+        @foreach (var type in firstHalfRoomType)
+        {
+            <input class="form-check-input mb-2 checkbox-group-room" type="checkbox" id="@type" name="deviceTypes" value="@type">
+            <label class="form-check-label mb-2" for="@type">@(Regex.Replace(type.ToString(), @"(?<!^)([A-Z])(?=[a-z])", " $1"))</label>
+            <br>
+        }
+    </div>
+    <div class="col-6" style=" text-align:left;">
+        @foreach (var type in secondHalfRoomType)
+        {
+            <input class="form-check-input mb-2 checkbox-group-room" type="checkbox" id="@type" name="deviceTypes" value="@type">
+            <label class="form-check-label mb-2" for="@type">@(Regex.Replace(type.ToString(), @"(?<!^)([A-Z])(?=[a-z])", " $1"))</label>
+            <br>
+        }
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-12 residence-title-block">
+        <h5>Is active?</h5>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6">
+        <input class="form-check-input mb-2 checkbox-group-active" type="radio" name="active" value="true">
+        <label class="form-check-label mb-2">Yes</label>
+        <br>
+    </div>
+    <div class="col-6">
+        <input class="form-check-input mb-2 checkbox-group-active" type="radio" name="active" value="false">
+        <label class="form-check-label mb-2">No</label>
+        <br>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-12 residence-title-block">
+        <h5>Is autonomous?</h5>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6">
+        <input class="form-check-input mb-2 checkbox-group-connected" type="radio" name="connected" value="true">
+        <label class="form-check-label mb-2">Yes</label>
+        <br>
+    </div>
+    <div class="col-6">
+        <input class="form-check-input mb-2 checkbox-group-connected" type="radio" name="connected" value="false">
+        <label class="form-check-label mb-2">No</label>
+        <br>
+    </div>
+</div>
+
