@@ -140,20 +140,33 @@ function loadDevices(filterModel) {
                 let devCount = parseInt($("#deviceCountData").html());
 
                 if (currentDeviceCount > deviceCount) {
+                    previousButton.css('display', 'block');
+                    nextButton.css('display', 'block');
                     previousButton.prop('disabled', false);
                     nextButton.prop('disabled', true);
                 }
                 else if (currentDeviceCount < deviceCount && currentDeviceCount > filterModel.PaginationModel.PageSize) {
+                    previousButton.css('display', 'block');
+                    nextButton.css('display', 'block');
                     previousButton.prop('disabled', false);
                     nextButton.prop('disabled', false);
                 }
                 else if (devCount < filterModel.PaginationModel.PageSize) {
+                    previousButton.css('display', 'block');
+                    nextButton.css('display', 'block');
                     previousButton.prop('disabled', true);
                     nextButton.prop('disabled', true);
                 }
                 else {
+                    previousButton.css('display', 'block');
+                    nextButton.css('display', 'block');
                     previousButton.prop('disabled', true);
                     nextButton.prop('disabled', false);
+                }
+
+                if (devCount == 0) {
+                    previousButton.css('display', 'none');
+                    nextButton.css('display', 'none');
                 }
             }
         },

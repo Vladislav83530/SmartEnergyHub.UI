@@ -1,0 +1,142 @@
+﻿@using SmartEnergyHub.UI.Models.Residence
+
+@model UpdateResidenceModel
+
+
+@section Styles {
+    <link href="/css/residence.css" rel="stylesheet" asp-append-version="true" />
+}
+
+<div class="container mt-5 w-50 container-residence-update">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-12">
+                <div class="row mb-2">
+                    <div class="col-12">
+                        <h2>Update info</h2>
+                        <hr />
+                    </div>
+                </div>
+                <form method="post" asp-action="UpdateResidence" asp-controller="Residence">
+                    <input style="display:none;" asp-for="Id" value="@Model.Id" />
+                    <div class="row">
+                        <div class="col-3"></div>
+                        <div class="col-3">
+                            <p class="input-label">
+                                <img src="~/images/area.png" width="20" height="20" class="mb-1" />
+                                Area:
+                            </p>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <input placeholder="Area" class="form-control w-100" asp-for="Area" value="@Model.Area" required />
+                                <span class="valid" asp-validation-for="Area"></span>
+                            </div>
+                        </div>
+                        <div class="col-3"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3"></div>
+                        <div class="col-3">
+                            <p class="input-label">
+                                <img src="~/images/area.png" width="20" height="20" class="mb-1" />
+                                Room count:
+                            </p>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <input placeholder="RoomCount" class="form-control w-100" asp-for="RoomCount" value="@Model.RoomCount" required />
+                                <span class="valid" asp-validation-for="RoomCount"></span>
+                            </div>
+                        </div>
+                        <div class="col-3"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3"></div>
+                        <div class="col-3">
+                            <p class="input-label">
+                                <img src="~/images/map.png" width="20" height="20" class="mb-1" />
+                                Region:
+                            </p>
+                        </div>
+                        <div class="col-3">
+                            <input placeholder="Region" class="form-control w-100" asp-for="Region" value="@Model.Region" />
+                            <span class="valid" asp-validation-for="Region"></span>
+                        </div>
+                        <div class="col-3"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3"></div>
+                        <div class="col-3">
+                            <p class="input-label">
+                                <img src="~/images/buildings.png" width="20" height="20" class="mb-1" />
+                                City:
+                            </p>
+                        </div>
+                        <div class="col-3">
+                            <input placeholder="City" class="form-control w-100" asp-for="City" value="@Model.City" />
+                            <span class="valid" asp-validation-for="City"></span>
+                        </div>
+                        <div class="col-3"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3"></div>
+                        <div class="col-3">
+                            <p class="input-label">
+                                <img src="~/images/streets.png" width="20" height="20" class="mb-1" />
+                                Street:
+                            </p>
+                        </div>
+                        <div class="col-3">
+                            <input placeholder="Street" class="form-control w-100" asp-for="Street" value="@Model.Street" />
+                            <span class="valid" asp-validation-for="Street"></span>
+                        </div>
+                        <div class="col-3"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3"></div>
+                        <div class="col-3">
+                            <p class="input-label">
+                                <img src="~/images/home-icon-silhouette.png" width="20" height="20" class="mb-1" />
+                                House number:
+                            </p>
+                        </div>
+                        <div class="col-3">
+                            <input placeholder="House number" class="form-control w-100" asp-for="HouseNumber" value="@Model.HouseNumber" />
+                            <span class="valid" asp-validation-for="HouseNumber"></span>
+                        </div>
+                        <div class="col-3"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3"></div>
+                        <div class="col-3">
+                            <p class="input-label">
+                                <img src="~/images/flat.png" width="20" height="20" class="mb-1" />
+                                Flat number:
+                            </p>
+                        </div>
+                        <div class="col-3">
+                            <input placeholder="Flat number" class="form-control w-100" asp-for="FlatNumber" value="@Model.FlatNumber" />
+                            <span class="valid" asp-validation-for="FlatNumber"></span>
+                        </div>
+                        <div class="col-3"></div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-3"></div>
+                        <div class="col-6">
+                            <input type="submit" class="btn btn-primary w-100" value="Save" />
+                        </div>
+                        <div class="col-3"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

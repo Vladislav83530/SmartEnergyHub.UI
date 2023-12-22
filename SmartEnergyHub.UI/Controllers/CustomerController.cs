@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using SmartEnergyHub.DAL.Entities;
@@ -26,6 +27,7 @@ namespace SmartEnergyHub.UI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Index(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -44,6 +46,7 @@ namespace SmartEnergyHub.UI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Update(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -76,6 +79,7 @@ namespace SmartEnergyHub.UI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Update(UpdateCustomerModel model)
         {
             if (model == null)
@@ -96,6 +100,7 @@ namespace SmartEnergyHub.UI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Delete(string id)
         {
             if (string.IsNullOrEmpty(id))

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using SmartEnergyHub.DAL.Entities.Enums;
 using SmartEnergyHub.UI.Models.Device;
@@ -22,12 +23,14 @@ namespace SmartEnergyHub.UI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> FilterDevices(int residenceId, int pageNumber, string name, string deviceTypes, string roomTypes, bool? isActive = null, bool? isAutonomous = null, int pageSize = 5)
         {
             string getDevicesUrl = $"/api/device/get-devices/{residenceId}";

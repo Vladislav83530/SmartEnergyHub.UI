@@ -60,6 +60,22 @@
                     {
                         <img class="device-img" src="~/images/laundry-machine.png" width="150">
                     }
+                    @if (device.DeviceType == DeviceType.VacuumCleaner)
+                    {
+                        <img class="device-img" src="~/images/vacuum.png" width="150">
+                    }
+                    @if (device.DeviceType == DeviceType.Toaster)
+                    {
+                        <img class="device-img" src="~/images/toaster.png" width="150">
+                    }
+                    @if (device.DeviceType == DeviceType.Camera)
+                    {
+                        <img class="device-img" src="~/images/free-icon-dslr-camera-2586709.png" width="150">
+                    }
+                    @if (device.DeviceType == DeviceType.Microwave)
+                    {
+                        <img class="device-img" src="~/images/free-icon-microwave-6625309.png" width="150">
+                    }
                 </div>
                 <div class="col-8">
                     <div class="row">

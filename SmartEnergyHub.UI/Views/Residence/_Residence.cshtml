@@ -89,10 +89,10 @@
 </div>
 <div class="row">
     <div class="col-6">
-        <a class="btn btn-primary w-100"><img src="~/images/edit.png" width="20" height="20" class="mb-1" /> Edit info</a>
+        <a asp-controller="Residence" asp-action="Update" asp-route-residenceId="@Model.Id" class="btn btn-primary w-100"><img src="~/images/edit.png" width="20" height="20" class="mb-1" /> Edit info</a>
     </div>
     <div class="col-6">
-        <a class="btn btn-danger btn-text w-100"><img src="~/images/trash-bin.png" width="22" height="22" class="mb-1" /> Clear info</a>
+        <a asp-controller="Residence" asp-action="ClearResidenceInfo" asp-route-residenceId="@Model.Id" class="btn btn-danger btn-text w-100"><img src="~/images/trash-bin.png" width="22" height="22" class="mb-1" /> Clear info</a>
     </div>
 </div>
 <hr />
