@@ -83,11 +83,11 @@
                             <h5>@device.Name</h5>
                             @if (device.IsActive)
                             {
-                                <div class="status-circle active"></div>
+                                <div id="status-circle-@device.Id" class="status-circle activecircle"></div>
                             }
                             else
                             {
-                                <div class="status-circle inactive"></div>
+                                <div id="status-circle-@device.Id" class="status-circle inactive"></div>
                             }               
                         </div>
                         <div class="col-1">
@@ -144,7 +144,7 @@
                     <div class="row mt-3">
                         <div class="toggle-container">
                             <div class="device-label mb-1 pl-1">On/Off</div>
-                            <input type="checkbox" id="toggle-@Model.IndexOf(device)" class="toggle-input ">
+                            <input type="checkbox" id="toggle-@Model.IndexOf(device)" class="toggle-input " data-deviceid="@device.Id">
                             <label for="toggle-@Model.IndexOf(device)" class="toggle-label">
                                 <div class="toggle-inner"></div>
                                 <div class="toggle-switch"></div>
@@ -177,9 +177,9 @@
         margin-left: 5px;
     }
 
-        .status-circle .active {
+    .activecircle {
             background-color: green;
-        }
+    }
 
     .inactive {
         background-color: yellow;

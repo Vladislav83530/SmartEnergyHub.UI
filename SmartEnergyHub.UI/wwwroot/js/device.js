@@ -168,6 +168,33 @@ function loadDevices(filterModel) {
                     previousButton.css('display', 'none');
                     nextButton.css('display', 'none');
                 }
+
+                $('.toggle-input ').change(function () {
+                    console.log($(this).prop('checked'))
+                    DeviceOnOff($(this).prop('checked'), $(this).data('deviceid'));
+                });
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error("Load error:", status, error);
+        }
+    });
+}
+
+function DeviceOnOff(isActive, deviceId) {
+    $.ajax({
+        url: "/Device/DeviceOnOff",
+        type: "POST",
+        data: {
+            isActive: isActive,
+            deviceId: deviceId
+        },
+        success: function (data) {
+            if (isActive) {
+                $(`#status-circle-${deviceId}`).removeClass("inactive").addClass("activecircle");
+            }
+            else {
+                $(`#status-circle-${deviceId}`).removeClass("activecircle").addClass("inactive");
             }
         },
         error: function (xhr, status, error) {

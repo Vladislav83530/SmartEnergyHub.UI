@@ -61,5 +61,26 @@ namespace SmartEnergyHub.UI.Controllers
 
             return Json(new { Error = "Bad request error" });
         }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> DeviceOnOff(int deviceId, bool isActive)
+        {
+            if (deviceId <= 0) 
+            {
+                return Json(new { Error = "Not found" });
+            }
+
+            string url = $"/api/device/update-active-status/{deviceId}/{isActive}";
+
+            Response<string> response = await this._networkProvider.PutAsync<string>(this._apiSettings, url);
+
+            if (response.Successful)
+            {
+                return Ok();
+            }
+
+            return Json(new { Error = "Bad request error" });
+        }
     }
 }
