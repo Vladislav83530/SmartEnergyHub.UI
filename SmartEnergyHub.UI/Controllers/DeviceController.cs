@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using SmartEnergyHub.DAL.Entities;
 using SmartEnergyHub.DAL.Entities.Enums;
 using SmartEnergyHub.UI.Models.Device;
 using SmartEnergyHub.UI.Providers.NetworkProvider;
 using SmartEnergyHub.UI.Settings;
+using System.Collections.Generic;
 
 namespace SmartEnergyHub.UI.Controllers
 {
@@ -81,6 +83,46 @@ namespace SmartEnergyHub.UI.Controllers
             }
 
             return Json(new { Error = "Bad request error" });
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> Manage(int deviceId)
+        {
+            if (deviceId <= 0)
+            {
+                return RedirectToAction("NotFound", "Error");
+            }
+
+            string url = $"/api/device/{deviceId}";
+            Response<DeviceModel> response = await this._networkProvider.GetAsync<DeviceModel>(this._apiSettings, url);
+
+            if (response.Successful && response.Data != null)
+            {
+                return View(response.Data);
+            }
+
+            return RedirectToAction("BadRequest", "Error");
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> GetSessions(int deviceId, int period)
+        {
+            if (deviceId <= 0)
+            {
+                 return Json(new { Error = "Not found" });
+            }
+
+            string url = $"/api/device/get-sessions/{deviceId}/{period}";
+            Response<List<ActivitySession>> response = await this._networkProvider.GetAsync<List<ActivitySession>> (this._apiSettings, url);
+
+            if (response.Successful && response.Data.Any())
+            {
+                return Ok(response.Data);
+            }
+
+            return Json(new { Error = "Bad request error" }); ;
         }
     }
 }
