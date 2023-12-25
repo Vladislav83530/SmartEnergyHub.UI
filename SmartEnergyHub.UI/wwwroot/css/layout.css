@@ -1,0 +1,116 @@
+﻿.nav-container {
+    text-align: center;
+}
+
+.header-title {
+    font-family: 'GFS Neohellenic', sans-serif;
+    font-size: 37px;
+    position: absolute;
+    color: #475250;
+}
+
+.navbar-nav {
+    margin-left: 250px;
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+.nav-link {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.arrow,
+.arrow:before {
+    position: absolute;
+    left: 50%;
+}
+
+.arrow {
+    width: 20px;
+    height: 20px;
+    top: 90%;
+    margin: -22px 0 0 -18px;
+    -webkit-transform: rotate(45deg);
+    border-left: none;
+    border-top: none;
+    border-right: 3px #ff460c solid;
+    border-bottom: 3px #ff460c solid;
+}
+
+
+    .arrow:before {
+        content: '';
+        width: 20px;
+        height: 20px;
+        top: 50%;
+        margin: -10px 0 0 -10px;
+        border-left: none;
+        border-top: none;
+        border-right: 2px #ff460c solid;
+        border-bottom: 2px #ff460c solid;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-name: arrow;
+    }
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 250px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 100%;
+    right: 100%;
+    border-radius: 10px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content block {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-content a {
+    padding: 10px;
+    display: block;
+    font-size: 18px;
+    text-decoration: none;
+    color: inherit;
+    font-weight: 600;
+    border-radius: 10px;
+}
+
+
+    .dropdown-content a:hover {
+        background-color: #ddd; 
+    }
+
+.carousel-item img {
+    height: 650px;
+}
+
+.main-content-block {
+    min-height: 600px;
+}
+
+@keyframes arrow {
+    0% {
+        opacity: 1
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-10px, -10px)
+    }
+}

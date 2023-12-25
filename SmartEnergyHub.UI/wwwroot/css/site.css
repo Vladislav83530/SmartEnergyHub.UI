@@ -1,0 +1,109 @@
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    font-size: 14px;
+    font-family: 'GFS Neohellenic', sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    flex: 1 1 auto;
+    background-color: #5adbb5;
+}
+
+.maint-title {
+    text-align: center;
+}
+
+.form-group label {
+    margin-bottom: 0px;
+    font-size: 18px;
+}
+
+.field-validation-error {
+    color: #ff460c;
+    font-weight: 500;
+}
+
+.btn-primary {
+    color: white;
+    border-color: transparent;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #5adbb5;
+}
+
+.btn-primary:hover {
+    color: white;
+    border-color: transparent;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #5adbb5;
+}
+
+.btn-text {
+    font-size: 20px;
+    font-weight: 600;
+    border-color: transparent;
+}
+
+.btn-info {
+    border-color: transparent;
+    background-color: #12c9ff;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.btn-info:hover {
+    border-color: transparent;
+    background-color: #12c9ff;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+main {
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.login-block {
+    margin-top: 160px;
+}
+
+.tooltip {
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.btn:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}

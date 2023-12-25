@@ -1,0 +1,180 @@
+﻿@using SmartEnergyHub.DAL.Entities.Enums;
+@using SmartEnergyHub.UI.Models.Device
+@using System.ComponentModel;
+@using System.Text.RegularExpressions;
+
+@model DeviceModel
+
+@section Styles {
+    <link href="/css/device.css" rel="stylesheet" asp-append-version="true" />
+}
+
+<div class="container w-50 device-container mt-4" data-deviceId="@Model.Id"> 
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-3">
+                    @if (Model.DeviceType == DeviceType.SmartVacuumCleaner)
+                    {
+                        <img class="device-img" src="~/images/cleaning-robot.png" width="150">
+                    }
+                    @if (Model.DeviceType == DeviceType.PC)
+                    {
+                        <img class="device-img" src="~/images/computer.png" width="150">
+                    }
+                    @if (Model.DeviceType == DeviceType.Refrigerator)
+                    {
+                        <img class="device-img" src="~/images/fridge.png" width="150">
+                    }
+                    @if (Model.DeviceType == DeviceType.Dryer)
+                    {
+                        <img class="device-img" src="~/images/tumble-dryer.png" width="150">
+                    }
+                    @if (Model.DeviceType == DeviceType.Dishwasher)
+                    {
+                        <img class="device-img" src="~/images/dishwasher.png" width="150">
+                    }
+                    @if (Model.DeviceType == DeviceType.Laptop)
+                    {
+                        <img class="device-img" src="~/images/web-traffic.png" width="150">
+                    }
+                    @if (Model.DeviceType == DeviceType.CoffeMaker)
+                    {
+                        <img class="device-img" src="~/images/coffee-machine.png" width="150">
+                    }
+                    @if (Model.DeviceType == DeviceType.Lamp)
+                    {
+                        <img class="device-img" src="~/images/light-bulb.png" width="150">
+                    }
+                    @if (Model.DeviceType == DeviceType.Cooktop)
+                    {
+                        <img class="device-img" src="~/images/induction-stove.png" width="150">
+                    }
+                    @if (Model.DeviceType == DeviceType.SecuritySystem)
+                    {
+                        <img class="device-img" src="~/images/cyber-security.png" width="150">
+                    }
+                    @if (Model.DeviceType == DeviceType.AirConditioner)
+                    {
+                        <img class="device-img" src="~/images/air-conditioner.png" width="150">
+                    }
+                    @if (Model.DeviceType == DeviceType.WashingMachine)
+                    {
+                        <img class="device-img" src="~/images/laundry-machine.png" width="150">
+                    }
+                    @if (Model.DeviceType == DeviceType.VacuumCleaner)
+                    {
+                        <img class="device-img" src="~/images/vacuum.png" width="150">
+                    }
+                    @if (Model.DeviceType == DeviceType.Toaster)
+                    {
+                        <img class="device-img" src="~/images/toaster.png" width="150">
+                    }
+                    @if (Model.DeviceType == DeviceType.Camera)
+                    {
+                        <img class="device-img" src="~/images/free-icon-dslr-camera-2586709.png" width="150">
+                    }
+                    @if (Model.DeviceType == DeviceType.Microwave)
+                    {
+                        <img class="device-img" src="~/images/free-icon-microwave-6625309.png" width="150">
+                    }
+                </div>
+                <div class="col-8">
+                    <div class="row">
+                        <div class="col-11 title-device-block">
+                            <h5>@Model.Name</h5>
+                            @if (Model.IsActive)
+                            {
+                                <div id="status-circle-@Model.Id" class="status-circle activecircle"></div>
+                            }
+                            else
+                            {
+                                <div id="status-circle-@Model.Id" class="status-circle inactive"></div>
+                            }
+                        </div>
+                        <div class="col-1">
+                            @if (Model.IsAutonomous)
+                            {
+                                <img width="25" style="margin-left:40px;" src="~/images/smartphone-charger.png">
+                            }
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 device-label">Device type:</div>
+                        <div class="col-8 device-value">
+                            @(Regex.Replace(Model.DeviceType.ToString(), @"(?<!^)([A-Z])(?=[a-z])", " $1"))
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 device-label">Room:</div>
+                        <div class="col-8 device-value">
+                            @(Regex.Replace(Model.RoomType.ToString(), @"(?<!^)([A-Z])(?=[a-z])", " $1"))
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 device-label">Last on:</div>
+                        <div class="col-8 device-value">
+                            @Model.LastAccessTime
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 device-label">Serial number:</div>
+                        <div class="col-8 device-value">
+                            @Model.SerialNumber
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 device-label">Access token:</div>
+                        <div class="col-8 device-value">
+                            @Model.AccessToken
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 device-label">MAC address:</div>
+                        <div class="col-8 device-value">
+                            @Model.MACAddress
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="row mt-5">
+                    </div>
+                    <div class="row mt-3">
+                        <div class="toggle-container">
+                            <div class="device-label mb-1 pl-1">On/Off</div>
+                            @if (Model.IsActive)
+                            {
+                                <input type="checkbox" id="toggle-@Model.Id" class="toggle-input " data-deviceid="@Model.Id" checked>
+                            }
+                            else
+                            {
+                                <input type="checkbox" id="toggle-@Model.Id" class="toggle-input " data-deviceid="@Model.Id">
+                            }
+                            <label for="toggle-@Model.Id" class="toggle-label">
+                                <div class="toggle-inner"></div>
+                                <div class="toggle-switch"></div>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <h5>Activity session</h5>
+            <a class="btn btn-info period-btn" data-period="0">By day</a>
+            <a class="btn btn-info period-btn" data-period="1">By week</a>
+            <a class="btn btn-info period-btn" data-period="2">By month</a>
+            <div class="chart-container mt-4">
+                <div class="ct-chart"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script type="text/javascript" src="/js/manage.js" asp-append-version="true"></script>
+}

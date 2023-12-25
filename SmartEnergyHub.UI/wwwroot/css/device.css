@@ -1,0 +1,166 @@
+﻿.main-content-block {
+    min-height: 1350px;
+}
+
+.container-residence {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.device-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.residence-title-block h5 {
+    float: left;
+    color: #7ed321;
+}
+
+.info-text {
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+    margin-bottom: 0;
+}
+
+.status-block h5 {
+    float: left;
+    color: #7ed321;
+    margin-right: 5px;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+#previous[disabled] {
+    color: #999;
+    background-color: #eee;
+    cursor: not-allowed;
+}
+
+#next[disabled] {
+    color: #999; 
+    background-color: #eee; 
+    cursor: not-allowed;
+}
+
+.form-check-input {
+    width: 25px;
+    height: 25px;
+}
+
+.form-check-label {
+    font-size: 16px;
+    margin-left: 15px;
+    margin-top: 5px;
+}
+
+.container-device {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.status-circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+.activecircle {
+    background-color: green;
+}
+
+.inactive {
+    background-color: yellow;
+}
+
+.title-device-block {
+    align-items: center;
+    display: flex;
+}
+
+.device-img {
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.device-value {
+    text-align: left;
+    padding: 0;
+}
+
+.device-label {
+    padding-right: 0;
+    text-align: left;
+    font-weight: 600;
+}
+
+.toggle-container {
+    position: relative;
+    display: inline-block;
+}
+
+.toggle-input {
+    display: none;
+}
+
+.toggle-label {
+    display: block;
+    width: 60px;
+    height: 30px;
+    background-color: #ddd;
+    border-radius: 15px;
+    position: relative;
+    cursor: pointer;
+}
+
+.toggle-inner {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.toggle-switch {
+    position: absolute;
+    top: 5px;
+    left: 30px;
+    width: 25px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease-in-out;
+}
+
+.toggle-input:checked + .toggle-label .toggle-inner {
+    transform: translateX(30px);
+}
+
+.toggle-input:checked + .toggle-label .toggle-switch {
+    background-color: #4CAF50;
+}
+
+.chart-container {
+    width: 800px;
+    overflow-x: auto;
+}

@@ -1,0 +1,62 @@
+﻿@using SmartEnergyHub.UI.Models.AuthCustomer
+@{
+    var excludedProperties = new List<string> { "FirstName", "LastName", "Email", "PhoneNumber", "Password", "PasswordConfirm" };
+    var allErrors = ViewData.ModelState.Values.SelectMany(v => v.Errors).ToList();
+    var unprocessedErrors = allErrors.Where(error => !excludedProperties.Any(prop => error.ErrorMessage.Contains(prop)));
+}
+
+@model CustomerRegisterModel
+
+<div class="container w-25 mt-5">
+    <h2 class="maint-title">Sign up</h2>
+    <form method="post" asp-controller="AuthCustomer" asp-action="Register">
+        <div class="form-group">
+            <label for="FirstName">First name</label>
+            <input placeholder="First name" asp-for="FirstName" class="form-control" required />
+            <span class="valid" asp-validation-for="FirstName"></span>
+        </div>
+        <div class="form-group">
+            <label for="LastName">Last name</label>
+            <input placeholder="Last name" asp-for="LastName" class="form-control" required />
+            <span class="valid" asp-validation-for="LastName"></span>
+        </div>
+        <div class="form-group">
+            <label for="Email">Email</label>
+            <input placeholder="Email" asp-for="Email" type="email" class="form-control" required />
+            <span class="valid" asp-validation-for="Email"></span>
+        </div>
+        <div class="form-group">
+            <label for="PhoneNumber">Phone number</label>
+            <input placeholder="Phone number" asp-for="PhoneNumber" class="form-control" required />
+            <span class="valid" asp-validation-for="PhoneNumber"></span>
+        </div>
+        <div class="form-group">
+            <label for="Password">Password</label>
+            <input placeholder="Password" asp-for="Password" type="password" class="form-control" required />
+            <span class="valid" asp-validation-for="Password"></span>
+        </div>
+        <div class="form-group">
+            <label for="PasswordConfirm">Confirm password</label>
+            <input placeholder="Confirm password" asp-for="PasswordConfirm" type="password" class="form-control" required />
+            <span class="valid" asp-validation-for="PasswordConfirm"></span>
+        </div>
+
+        <div class="field-validation-error">
+            @if (unprocessedErrors.Any())
+            {
+                <div class="field-validation-error">
+                    <ul>
+                        @foreach (var error in unprocessedErrors)
+                        {
+                            <li>@error.ErrorMessage</li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary w-100" value="Sign up" />
+        </div>
+    </form>
+</div>

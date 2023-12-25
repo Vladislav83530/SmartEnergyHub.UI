@@ -1,0 +1,37 @@
+﻿@using System.Security.Claims;
+
+@section Scripts {
+    <script type="text/javascript" src="/js/device.js" asp-append-version="true"></script>
+}
+
+@section Styles {
+    <link href="/css/device.css" rel="stylesheet" asp-append-version="true" />
+}
+
+
+<div id="main-device-block" class="container mt-5 device-page" data-userid="@User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value">
+    <div class="row">
+        <div class="col-8">
+            <div class="row">
+                <div class="col-12"></div>
+            </div>
+            <div class="row">
+                <div id="device-block" class="col-12">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <nav id="pagination" data-currentPage="1" data-maxPage="" style="display: none;" aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item"><button id="previous" class="page-link" href="">Previous</button></li>
+                            <li class="page-item"><button id="next" class="page-link" href="#">Next</button></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div id="residence-block" class="col-4 container-residence">
+        </div>
+    </div>
+</div>
